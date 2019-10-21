@@ -28,7 +28,9 @@
         @touchend.native.prevent="stop"
         :disabled="disabled || numericValue <= min"
       >
-        <i class="btn-icon"></i>
+        <slot name="btnDecrement">
+          <i class="btn-icon"></i>
+        </slot>
       </button>
       <button
         type="button"
@@ -39,7 +41,9 @@
         @touchend.native.prevent="stop"
         :disabled="disabled || numericValue >= max"
       >
-        <i class="btn-icon"></i>
+        <slot name="btnIncrement">
+          <i class="btn-icon"></i>
+        </slot>
       </button>
   </div>
 </template>
@@ -139,7 +143,7 @@ export default {
      */
     toNumber (val) {
       let num = parseFloat(val)
-      if (isNaN(val) || !isFinite(val)) {
+      if (isNaN(num) || !isFinite(num)) {
         num = 0
       }
       return num
